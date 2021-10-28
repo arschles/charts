@@ -32,7 +32,7 @@ interceptor:
   # the image pull policy of the interceptor
   pullPolicy: Always
   # configurable values for the interceptor's admin
-  # service. the admin service is a cluster-internal 
+  # service. the admin service is a cluster-internal
   # HTTP interface for triggering debugging behavior
   admin:
     # the name of the admin Service resource
@@ -51,15 +51,15 @@ interceptor:
     # the minimum number of interceptors that should be
     # running at any given time
     min: 1
-    # the maximum number of interceptors that should be 
+    # the maximum number of interceptors that should be
     # running at any given time
     max: 50
     # after the interceptor receives a request,
     # this is the maximum amount of time it will
     # wait for the backing deployment to reach 1
     # or more replicas
-    waitTimeout: 1500ms
-  
+    waitTimeout: 10000ms
+
   # configuration for the ScaledObject resource for the
   # interceptor
   scaledObject:
@@ -82,8 +82,8 @@ interceptor:
   responseHeaderTimeout: 500ms
   # how often the interceptor does a full refresh of
   # its deployment cache
-  deploymentCachePollingIntervalMS: 250
-  # whether to force HTTP/2 on incoming requests. 
+  deploymentCachePollingIntervalMS: 1
+  # whether to force HTTP/2 on incoming requests.
   # corresponds to the "ForceAttemptHTTP2" field
   # in https://pkg.go.dev/net/http#Transport
   forceHTTP2: false
@@ -106,10 +106,10 @@ interceptor:
 # configuration for the images to use for each component
 images:
   # tag is the image tag to use for all images.
-  # for example, if the operator image is "myoperator" and 
+  # for example, if the operator image is "myoperator" and
   # tag is "mytag", the operator image used will be
   # "myoperator:mytag". `latest` is used to indicate the latest
-  # stable release in the official images, `canary` is 
+  # stable release in the official images, `canary` is
   # the build for the latest commit to the `main` branch,
   # and you can target any other commit with `sha-<GIT_SHA[0:7]>`
   tag: latest
